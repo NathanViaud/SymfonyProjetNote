@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Apiplatform\Core\Annotation\ApiResource;
 
 /**
  * Vente
  *
  * @ORM\Table(name="vente", uniqueConstraints={@ORM\UniqueConstraint(name="vente_unique", columns={"IDALBUM", "MOIS", "ANNEE"})}, indexes={@ORM\Index(name="IDX_888A2A4CD0D8FC40", columns={"IDALBUM"})})
  * @ORM\Entity
+ * @ApiResource
  */
 class Vente
 {
@@ -51,6 +53,59 @@ class Vente
      * })
      */
     private $idalbum;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getMois(): ?int
+    {
+        return $this->mois;
+    }
+
+    public function setMois(int $mois): self
+    {
+        $this->mois = $mois;
+
+        return $this;
+    }
+
+    public function getAnnee(): ?int
+    {
+        return $this->annee;
+    }
+
+    public function setAnnee(int $annee): self
+    {
+        $this->annee = $annee;
+
+        return $this;
+    }
+
+    public function getNbventes(): ?int
+    {
+        return $this->nbventes;
+    }
+
+    public function setNbventes(int $nbventes): self
+    {
+        $this->nbventes = $nbventes;
+
+        return $this;
+    }
+
+    public function getIdalbum(): ?Album
+    {
+        return $this->idalbum;
+    }
+
+    public function setIdalbum(?Album $idalbum): self
+    {
+        $this->idalbum = $idalbum;
+
+        return $this;
+    }
 
 
 }

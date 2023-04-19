@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Apiplatform\Core\Annotation\ApiResource;
 
 /**
  * Album
  *
  * @ORM\Table(name="album", indexes={@ORM\Index(name="album_groupe_fk", columns={"IDGROUPE"}), @ORM\Index(name="album_artiste_fk", columns={"IDARTISTE"})})
  * @ORM\Entity
+ * @ApiResource
  */
 class Album
 {
@@ -68,6 +71,83 @@ class Album
      * })
      */
     private $idgroupe;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(string $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getDatesortie(): ?\DateTimeInterface
+    {
+        return $this->datesortie;
+    }
+
+    public function setDatesortie(\DateTimeInterface $datesortie): self
+    {
+        $this->datesortie = $datesortie;
+
+        return $this;
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getIdartiste(): ?Artiste
+    {
+        return $this->idartiste;
+    }
+
+    public function setIdartiste(?Artiste $idartiste): self
+    {
+        $this->idartiste = $idartiste;
+
+        return $this;
+    }
+
+    public function getIdgroupe(): ?Groupe
+    {
+        return $this->idgroupe;
+    }
+
+    public function setIdgroupe(?Groupe $idgroupe): self
+    {
+        $this->idgroupe = $idgroupe;
+
+        return $this;
+    }
 
 
 }
