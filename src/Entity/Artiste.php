@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
 
 /**
  * Artiste
@@ -11,6 +14,7 @@ use Apiplatform\Core\Annotation\ApiResource;
  * @ORM\Table(name="artiste")
  * @ORM\Entity
  * @ApiResource
+ * @ApiFilter(BooleanFilter::class, properties={"estchanteur"})
  */
 class Artiste
 {
@@ -20,6 +24,7 @@ class Artiste
      * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups({"album"}, "membregroupe")
      */
     private $id;
 
@@ -27,6 +32,7 @@ class Artiste
      * @var string
      *
      * @ORM\Column(name="NOM", type="string", length=100, nullable=false)
+     * @Groups({"album", "membregroupe"})
      */
     private $nom;
 
@@ -34,6 +40,7 @@ class Artiste
      * @var bool
      *
      * @ORM\Column(name="ESTCHANTEUR", type="boolean", nullable=false)
+     * @Groups({"album", "membregroupe"})
      */
     private $estchanteur;
 

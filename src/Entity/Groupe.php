@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Groupe
@@ -20,6 +22,7 @@ class Groupe
      * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups({"album", "membregroupe"})
      */
     private $id;
 
@@ -27,6 +30,7 @@ class Groupe
      * @var string
      *
      * @ORM\Column(name="NOM", type="string", length=100, nullable=false)
+     * @Groups({"album", "membregroupe"})
      */
     private $nom;
 

@@ -3,15 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\DBAL\Types\Types;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 
 /**
  * Album
  *
  * @ORM\Table(name="album", indexes={@ORM\Index(name="album_groupe_fk", columns={"IDGROUPE"}), @ORM\Index(name="album_artiste_fk", columns={"IDARTISTE"})})
  * @ORM\Entity
- * @ApiResource
+ * @ApiResource(normalizationContext={"groups"={"album"}})
+ * @ApiFilter(SearchFilter::class, properties={"titre": "partial", "genre" = "excat"})
+ * 
  */
 class Album
 {
@@ -21,6 +27,7 @@ class Album
      * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups({"album"})
      */
     private $id;
 
@@ -28,6 +35,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="TITRE", type="string", length=100, nullable=false)
+     * @Groups({"album"})
      */
     private $titre;
 
@@ -35,6 +43,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="GENRE", type="string", length=50, nullable=false)
+     * @Groups({"album"})
      */
     private $genre;
 
@@ -42,6 +51,7 @@ class Album
      * @var \DateTime
      *
      * @ORM\Column(name="DATESORTIE", type="date", nullable=false)
+     * @Groups({"album"})
      */
     private $datesortie;
 
@@ -49,6 +59,7 @@ class Album
      * @var string
      *
      * @ORM\Column(name="PRIX", type="decimal", precision=5, scale=2, nullable=false)
+     * @Groups({"album"})
      */
     private $prix;
 
@@ -59,6 +70,7 @@ class Album
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDARTISTE", referencedColumnName="ID")
      * })
+     * @Groups({"album"})
      */
     private $idartiste;
 
@@ -69,6 +81,7 @@ class Album
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDGROUPE", referencedColumnName="ID")
      * })
+     * @Groups({"album"})
      */
     private $idgroupe;
 

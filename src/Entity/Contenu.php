@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Contenu
  *
  * @ORM\Table(name="contenu", uniqueConstraints={@ORM\UniqueConstraint(name="contenu_uq", columns={"IDMORCEAU", "IDALBUM"})}, indexes={@ORM\Index(name="contenu_album_fk", columns={"IDALBUM"}), @ORM\Index(name="IDX_89C2003FAD7D3E89", columns={"IDMORCEAU"})})
  * @ORM\Entity
- * @ApiResource
+ * @ApiResource(normalizationContext={"groups"={"contenu"}})
  */
 class Contenu
 {
@@ -20,6 +21,7 @@ class Contenu
      * @ORM\Column(name="ID", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Groups({"contenu"})
      */
     private $id;
 
@@ -30,6 +32,7 @@ class Contenu
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDMORCEAU", referencedColumnName="ID")
      * })
+     * @Groups({"contenu"})
      */
     private $idmorceau;
 
