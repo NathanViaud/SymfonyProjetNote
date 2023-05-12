@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 /**
  * Contenu
@@ -27,7 +28,7 @@ class Contenu
 
     /**
      * @var \Morceau
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Morceau")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDMORCEAU", referencedColumnName="ID")
@@ -38,7 +39,7 @@ class Contenu
 
     /**
      * @var \Album
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Album")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDALBUM", referencedColumnName="ID")

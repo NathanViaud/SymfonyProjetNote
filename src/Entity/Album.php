@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 
 
 /**
@@ -65,7 +66,7 @@ class Album
 
     /**
      * @var \Artiste
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Artiste")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDARTISTE", referencedColumnName="ID")
@@ -76,7 +77,7 @@ class Album
 
     /**
      * @var \Groupe
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Groupe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDGROUPE", referencedColumnName="ID")

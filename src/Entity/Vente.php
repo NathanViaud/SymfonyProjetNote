@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
+use Apiplatform\Core\Annotation\ApiSubresource;
 
 /**
  * Vente
@@ -46,7 +47,7 @@ class Vente
 
     /**
      * @var \Album
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Album")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDALBUM", referencedColumnName="ID")

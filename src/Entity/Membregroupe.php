@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Apiplatform\Core\Annotation\ApiSubresource;
 
 /**
  * Membregroupe
@@ -27,7 +28,7 @@ class Membregroupe
 
     /**
      * @var \Artiste
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Artiste")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDARTISTE", referencedColumnName="ID")
@@ -38,7 +39,7 @@ class Membregroupe
 
     /**
      * @var \Groupe
-     *
+     * @ApiSubresource
      * @ORM\ManyToOne(targetEntity="Groupe")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="IDGROUPE", referencedColumnName="ID")
