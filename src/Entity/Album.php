@@ -5,11 +5,11 @@ namespace App\Entity;
 use Doctrine\DBAL\Types\Types;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Doctrine\ORM\Mapping as ORM;
-use Apiplatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Annotation\ApiSubresource;
-
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Album
@@ -37,6 +37,11 @@ class Album
      *
      * @ORM\Column(name="TITRE", type="string", length=100, nullable=false)
      * @Groups({"album"})
+     * @Assert\NotBlank(message="The title is required")
+     * @Assert\Length(
+     *    max = 100,
+     *    maxMessage = "The title cannot be longer than {{ limit }} characters",
+     * )
      */
     private $titre;
 
@@ -45,6 +50,11 @@ class Album
      *
      * @ORM\Column(name="GENRE", type="string", length=50, nullable=false)
      * @Groups({"album"})
+     * @Assert\NotBlank(message="The genre is required")
+     * @Assert\Length(
+     *  max = 50,
+     *  maxMessage = "The genre cannot be longer than {{ limit }} characters",
+     * )
      */
     private $genre;
 
@@ -53,6 +63,9 @@ class Album
      *
      * @ORM\Column(name="DATESORTIE", type="date", nullable=false)
      * @Groups({"album"})
+     * @Assert\NotBlank(message="The date is required")
+     * @Assert\Date(message="The date is not valid")
+     * @Assert\LessThanOrEqual("today", message="The date cannot be in the future")
      */
     private $datesortie;
 
@@ -61,6 +74,8 @@ class Album
      *
      * @ORM\Column(name="PRIX", type="decimal", precision=5, scale=2, nullable=false)
      * @Groups({"album"})
+     * @Assert\NotBlank(message="The price is required")
+     * @Assert\Positive(message="The price must be positive")
      */
     private $prix;
 

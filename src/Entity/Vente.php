@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
 use Apiplatform\Core\Annotation\ApiSubresource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Vente
@@ -26,8 +27,13 @@ class Vente
 
     /**
      * @var int
-     *
      * @ORM\Column(name="MOIS", type="integer", nullable=false)
+     * @Assert\NotBlank(message="The month is required")
+     * @Assert\Range(
+     * min = 1,
+     * max = 12,
+     * notInRangeMessage = "The month must be between {{ min }} and {{ max }}",
+     * )
      */
     private $mois;
 
@@ -35,6 +41,12 @@ class Vente
      * @var int
      *
      * @ORM\Column(name="ANNEE", type="integer", nullable=false)
+     * @Assert\NotBlank(message="The year is required")
+     * @Assert\Range(
+     * min = 1900,
+     * max = 2100,
+     * notInRangeMessage = "The year must be between {{ min }} and {{ max }}",
+     * )
      */
     private $annee;
 
@@ -42,6 +54,8 @@ class Vente
      * @var int
      *
      * @ORM\Column(name="NBVENTES", type="integer", nullable=false)
+     * @Assert\NotBlank(message="The number of sales is required")
+     * @Assert\Positive(message="The number of sales must be positive")
      */
     private $nbventes;
 

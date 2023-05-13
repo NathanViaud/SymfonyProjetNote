@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Apiplatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Morceau
@@ -30,6 +31,11 @@ class Morceau
      *
      * @ORM\Column(name="TITRE", type="string", length=100, nullable=false)
      * @Groups({"contenu"})
+     * @Assert\NotBlank(message="The title is required")
+     * @Assert\Length(
+     *   max = 100,
+     *   maxMessage = "The title cannot be longer than {{ limit }} characters",
+     * )
      */
     private $titre;
 
@@ -38,6 +44,11 @@ class Morceau
      *
      * @ORM\Column(name="DUREE", type="string", length=5, nullable=false, options={"fixed"=true})
      * @Groups({"contenu"})
+     * @Assert\NotBlank(message="The duration is required")
+     * @Assert\Length(
+     *  max = 5,
+     *  maxMessage = "The duration cannot be longer than {{ limit }} characters",
+     * )
      */
     private $duree;
 
